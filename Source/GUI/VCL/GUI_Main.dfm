@@ -14,13 +14,15 @@ object MainF: TMainF
   OnClose = FormClose
   OnDestroy = FormDestroy
   OnResize = FormResize
+  OnShow = FormShow
   TextHeight = 13
   object Page: TPageControl
-    Left = 40
+    Left = 42
     Top = 0
-    Width = 690
-    Height = 385
-    ActivePage = Page_Text
+    Width = 808
+    Height = 600
+    ActivePage = Page_Easy
+    Align = alClient
     BiDiMode = bdLeftToRight
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -31,326 +33,557 @@ object MainF: TMainF
     ParentFont = False
     ParentShowHint = False
     ShowHint = False
+    Style = tsFlatButtons
     TabHeight = 22
     TabOrder = 0
-    TabPosition = tpBottom
     TabStop = False
+    ExplicitWidth = 804
+    ExplicitHeight = 599
     object Page_Easy: TTabSheet
       Caption = 'Easy'
-      object Page_Easy_Note: TLabel
-        Left = 0
-        Top = 318
-        Width = 657
-        Height = 15
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = 
-          'Note : this is a basic view. For more information about this fil' +
-          'e, you must select a different view (Sheet, Tree...)'
-      end
-      object Page_Easy_A2: TGroupBox
-        Left = 340
-        Top = 200
-        Width = 340
-        Height = 56
-        Caption = 'Second audio stream'
-        TabOrder = 4
-        object Page_Easy_A2_Codec: TLabel
-          Left = 9
-          Top = 17
-          Width = 36
-          Height = 15
-          Caption = 'Codec'
-          ShowAccelChar = False
-        end
-        object Page_Easy_A2_Web: TButton
-          Left = 4
-          Top = 32
-          Width = 314
-          Height = 21
-          Hint = 'Go to the web site of a player for this file'
-          Caption = 'Go to the web site of a player for this file'
-          TabOrder = 0
-          Visible = False
-          OnClick = Page_Easy_WebClick
-        end
-      end
-      object Page_Easy_File: TComboBox
+      object pnlFile: TPanel
         Left = 0
         Top = 0
-        Width = 657
+        Width = 800
         Height = 23
-        Style = csDropDownList
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 1
-        OnChange = Page_Easy_FileChange
-      end
-      object Page_Easy_V1: TGroupBox
-        Left = 0
-        Top = 144
-        Width = 680
-        Height = 56
-        Caption = 'First video stream'
-        TabOrder = 2
-        object Page_Easy_V1_Codec: TLabel
-          Left = 9
-          Top = 17
-          Width = 36
-          Height = 15
-          Caption = 'Codec'
-          ShowAccelChar = False
-        end
-        object Page_Easy_V1_Web: TButton
-          Left = 4
-          Top = 32
-          Width = 322
-          Height = 21
-          Hint = 'Go to the web site of a player for this file'
-          Caption = 'Go to the web site of a player for this file'
-          TabOrder = 0
-          Visible = False
-          OnClick = Page_Easy_WebClick
-        end
-      end
-      object Page_Easy_A1: TGroupBox
-        Left = 0
-        Top = 200
-        Width = 340
-        Height = 56
-        Caption = 'First audio stream'
-        TabOrder = 3
-        object Page_Easy_A1_Codec: TLabel
-          Left = 9
-          Top = 17
-          Width = 36
-          Height = 15
-          Caption = 'Codec'
-          ShowAccelChar = False
-        end
-        object Page_Easy_A1_Web: TButton
-          Left = 4
-          Top = 32
-          Width = 322
-          Height = 21
-          Hint = 'Go to the web site of a player for this file'
-          Caption = 'Go to the web site of a player for this file'
-          TabOrder = 0
-          Visible = False
-          OnClick = Page_Easy_WebClick
-        end
-      end
-      object Page_Easy_T2: TGroupBox
-        Left = 228
-        Top = 256
-        Width = 225
-        Height = 56
-        Caption = 'Second text stream'
-        TabOrder = 5
-        object Page_Easy_T2_Codec: TLabel
-          Left = 9
-          Top = 16
-          Width = 36
-          Height = 15
-          Caption = 'Codec'
-          ShowAccelChar = False
-        end
-        object Page_Easy_T2_Web: TButton
-          Left = 4
-          Top = 32
-          Width = 215
-          Height = 21
-          Hint = 'Go to the web site of a player for this file'
-          Caption = 'Go to the web site of a player for this file'
-          TabOrder = 0
-          Visible = False
-          OnClick = Page_Easy_WebClick
-        end
-      end
-      object Page_Easy_T1: TGroupBox
-        Left = 0
-        Top = 256
-        Width = 228
-        Height = 56
-        Caption = 'First text stream'
-        TabOrder = 6
-        object Page_Easy_T1_Codec: TLabel
-          Left = 9
-          Top = 17
-          Width = 36
-          Height = 15
-          Caption = 'Codec'
-          ShowAccelChar = False
-        end
-        object Page_Easy_T1_Web: TButton
-          Left = 4
-          Top = 32
-          Width = 215
-          Height = 21
-          Hint = 'Go to the web site of a player for this file'
-          Caption = 'Go to the web site of a player for this file'
-          TabOrder = 0
-          Visible = False
-          OnClick = Page_Easy_WebClick
-        end
-      end
-      object Page_Easy_FileSelect: TButton
-        Left = 658
-        Top = 0
-        Width = 21
-        Height = 23
-        Caption = '...'
-        TabOrder = 7
-        OnClick = M_File_Open_FileClick
-      end
-      object Page_Easy_G1: TGroupBox
-        Left = 0
-        Top = 24
-        Width = 680
-        Height = 121
-        Caption = 'Container and general information'
+        Align = alTop
+        AutoSize = True
+        BevelOuter = bvNone
         TabOrder = 0
-        object Page_Easy_G1_Codec: TLabel
-          Left = 5
-          Top = 16
-          Width = 39
-          Height = 15
-          AutoSize = False
-          Caption = 'Format'
-          ShowAccelChar = False
-        end
-        object Page_Easy_General_List_V: TLabel
-          Left = 5
-          Top = 32
-          Width = 31
-          Height = 15
-          AutoSize = False
-          Caption = 'Video'
-          ShowAccelChar = False
-        end
-        object Page_Easy_General_List_A: TLabel
-          Left = 5
-          Top = 48
-          Width = 31
-          Height = 15
-          AutoSize = False
-          Caption = 'Audio'
-          ShowAccelChar = False
-        end
-        object Page_Easy_General_List_T: TLabel
-          Left = 5
-          Top = 64
-          Width = 22
-          Height = 15
-          AutoSize = False
-          Caption = 'Text'
-          ShowAccelChar = False
-        end
-        object Page_Easy_General_List_C: TLabel
-          Left = 5
-          Top = 80
-          Width = 51
-          Height = 15
-          AutoSize = False
-          Caption = 'Chapters'
-          ShowAccelChar = False
-        end
-        object Page_Easy_General_Tag1: TLabel
-          Left = 330
-          Top = 16
-          Width = 28
-          Height = 15
-          AutoSize = False
-          Caption = 'Tag1'
-          ShowAccelChar = False
-        end
-        object Page_Easy_General_Tag2: TLabel
-          Left = 330
-          Top = 32
-          Width = 28
-          Height = 15
-          AutoSize = False
-          Caption = 'Tag2'
-          ShowAccelChar = False
-        end
-        object Page_Easy_General_Tag3: TLabel
-          Left = 330
-          Top = 48
-          Width = 28
-          Height = 15
-          AutoSize = False
-          Caption = 'Tag3'
-          ShowAccelChar = False
-        end
-        object Page_Easy_General_Tag4: TLabel
-          Left = 330
-          Top = 64
-          Width = 28
-          Height = 15
-          AutoSize = False
-          Caption = 'Tag4'
-          ShowAccelChar = False
-        end
-        object Page_Easy_General_Tag5: TLabel
-          Left = 330
-          Top = 80
-          Width = 28
-          Height = 15
-          AutoSize = False
-          Caption = 'Tag5'
-          ShowAccelChar = False
-        end
-        object Page_Easy_G1_Web: TButton
-          Left = 4
-          Top = 96
-          Width = 323
-          Height = 21
-          Hint = 'Go to the web site of a player for this file'
-          Caption = 'Go to the web site of a player for this file'
+        ExplicitWidth = 796
+        DesignSize = (
+          800
+          23)
+        object Page_Easy_File: TComboBox
+          Left = 0
+          Top = 0
+          Width = 773
+          Height = 23
+          Align = alLeft
+          Style = csDropDownList
+          Anchors = [akLeft, akTop, akRight]
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
-          Visible = False
-          OnClick = Page_Easy_WebClick
+          OnChange = Page_Easy_FileChange
+          ExplicitWidth = 769
+        end
+        object Page_Easy_FileSelect: TButton
+          Left = 777
+          Top = 0
+          Width = 21
+          Height = 23
+          Anchors = [akTop, akRight]
+          Caption = '...'
+          TabOrder = 1
+          OnClick = M_File_Open_FileClick
+          ExplicitLeft = 773
         end
       end
-      object Page_Easy_DifferentView: TButton
-        Left = 656
-        Top = 312
-        Width = 27
-        Height = 25
-        Caption = '-->'
-        PopupMenu = ToolBar_View_Menu
-        TabOrder = 8
-        OnClick = Page_Easy_DifferentViewClick
+      object pnlContainer: TPanel
+        Left = 0
+        Top = 23
+        Width = 800
+        Height = 127
+        Align = alTop
+        AutoSize = True
+        BevelOuter = bvNone
+        TabOrder = 1
+        object Page_Easy_G1: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 796
+          Height = 127
+          Align = alTop
+          Caption = 'Container and general information'
+          Ctl3D = True
+          ParentCtl3D = False
+          TabOrder = 0
+          DesignSize = (
+            796
+            127)
+          object Page_Easy_G1_Web: TButton
+            Left = 3
+            Top = 102
+            Width = 393
+            Height = 21
+            Hint = 'Go to the web site of a player for this file'
+            Anchors = [akLeft, akTop, akRight]
+            Caption = 'Go to the web site of a player for this file'
+            TabOrder = 0
+            Visible = False
+            OnClick = Page_Easy_WebClick
+          end
+          object gpnlContainerLabels: TGridPanel
+            AlignWithMargins = True
+            Left = 5
+            Top = 20
+            Width = 786
+            Height = 82
+            Align = alTop
+            BevelOuter = bvNone
+            ColumnCollection = <
+              item
+                Value = 50.000000000000000000
+              end
+              item
+                Value = 50.000000000000000000
+              end>
+            ControlCollection = <
+              item
+                Column = 0
+                Control = pnlContainerLabelsColumn1
+                Row = 0
+              end
+              item
+                Column = 1
+                Control = pnlContainerLabelsColumn2
+                Row = 0
+              end>
+            RowCollection = <
+              item
+                Value = 100.000000000000000000
+              end>
+            TabOrder = 1
+            object pnlContainerLabelsColumn1: TPanel
+              Left = 0
+              Top = 0
+              Width = 393
+              Height = 82
+              Align = alClient
+              AutoSize = True
+              BevelOuter = bvNone
+              TabOrder = 0
+              object Page_Easy_G1_Codec: TLabel
+                Left = 0
+                Top = 0
+                Width = 39
+                Height = 15
+                Caption = 'Format'
+                ShowAccelChar = False
+              end
+              object Page_Easy_General_List_A: TLabel
+                Left = 0
+                Top = 32
+                Width = 31
+                Height = 15
+                Caption = 'Audio'
+                ShowAccelChar = False
+              end
+              object Page_Easy_General_List_C: TLabel
+                Left = 0
+                Top = 64
+                Width = 51
+                Height = 15
+                Caption = 'Chapters'
+                ShowAccelChar = False
+              end
+              object Page_Easy_General_List_T: TLabel
+                Left = 0
+                Top = 48
+                Width = 21
+                Height = 15
+                Caption = 'Text'
+                ShowAccelChar = False
+              end
+              object Page_Easy_General_List_V: TLabel
+                Left = 0
+                Top = 16
+                Width = 31
+                Height = 15
+                Caption = 'Video'
+                ShowAccelChar = False
+              end
+            end
+            object pnlContainerLabelsColumn2: TPanel
+              Left = 393
+              Top = 0
+              Width = 393
+              Height = 82
+              Align = alClient
+              AutoSize = True
+              BevelOuter = bvNone
+              TabOrder = 1
+              object Page_Easy_General_Tag1: TLabel
+                Left = 0
+                Top = 0
+                Width = 27
+                Height = 15
+                Caption = 'Tag1'
+                ShowAccelChar = False
+              end
+              object Page_Easy_General_Tag2: TLabel
+                Left = 0
+                Top = 16
+                Width = 27
+                Height = 15
+                Caption = 'Tag2'
+                ShowAccelChar = False
+              end
+              object Page_Easy_General_Tag3: TLabel
+                Left = 0
+                Top = 32
+                Width = 27
+                Height = 15
+                Caption = 'Tag3'
+                ShowAccelChar = False
+              end
+              object Page_Easy_General_Tag4: TLabel
+                Left = 0
+                Top = 48
+                Width = 27
+                Height = 15
+                Caption = 'Tag4'
+                ShowAccelChar = False
+              end
+              object Page_Easy_General_Tag5: TLabel
+                Left = 0
+                Top = 64
+                Width = 27
+                Height = 15
+                Caption = 'Tag5'
+                ShowAccelChar = False
+              end
+            end
+          end
+        end
       end
-      object Page_Easy_T3: TGroupBox
-        Left = 456
-        Top = 256
-        Width = 225
+      object pnlVideoStreams: TPanel
+        Left = 0
+        Top = 150
+        Width = 800
         Height = 56
-        Caption = 'Third text stream'
-        TabOrder = 9
-        object Page_Easy_T3_Codec: TLabel
-          Left = 9
-          Top = 16
-          Width = 36
-          Height = 15
-          Caption = 'Codec'
-          ShowAccelChar = False
-        end
-        object Page_Easy_T3_Web: TButton
-          Left = 4
-          Top = 32
-          Width = 215
-          Height = 21
-          Hint = 'Go to the web site of a player for this file'
-          Caption = 'Go to the web site of a player for this file'
+        Align = alTop
+        AutoSize = True
+        BevelOuter = bvNone
+        TabOrder = 2
+        ExplicitWidth = 796
+        object Page_Easy_V1: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 800
+          Height = 56
+          Align = alTop
+          Caption = 'First video stream'
           TabOrder = 0
-          Visible = False
-          OnClick = Page_Easy_WebClick
+          ExplicitWidth = 796
+          object Page_Easy_V1_Codec: TLabel
+            Left = 4
+            Top = 17
+            Width = 36
+            Height = 15
+            Caption = 'Codec'
+            ShowAccelChar = False
+          end
+          object Page_Easy_V1_Web: TButton
+            Left = 3
+            Top = 32
+            Width = 322
+            Height = 21
+            Hint = 'Go to the web site of a player for this file'
+            Caption = 'Go to the web site of a player for this file'
+            TabOrder = 0
+            Visible = False
+            OnClick = Page_Easy_WebClick
+          end
+        end
+      end
+      object pnlAudioStreams: TPanel
+        Left = 0
+        Top = 206
+        Width = 800
+        Height = 58
+        Align = alTop
+        AutoSize = True
+        BevelOuter = bvNone
+        TabOrder = 3
+        object gpnlAudioStreams: TGridPanel
+          Left = 0
+          Top = 0
+          Width = 800
+          Height = 58
+          Align = alTop
+          BevelOuter = bvNone
+          ColumnCollection = <
+            item
+              Value = 50.000000000000000000
+            end
+            item
+              Value = 50.000000000000000000
+            end>
+          ControlCollection = <
+            item
+              Column = 0
+              Control = Page_Easy_A1
+              Row = 0
+            end
+            item
+              Column = 1
+              Control = Page_Easy_A2
+              Row = 0
+            end>
+          RowCollection = <
+            item
+              Value = 100.000000000000000000
+            end>
+          TabOrder = 0
+          ExplicitWidth = 796
+          object Page_Easy_A1: TGroupBox
+            AlignWithMargins = True
+            Left = 0
+            Top = 0
+            Width = 397
+            Height = 56
+            Margins.Left = 0
+            Margins.Top = 0
+            Margins.Bottom = 0
+            Align = alTop
+            Caption = 'First audio stream'
+            TabOrder = 0
+            ExplicitWidth = 395
+            object Page_Easy_A1_Codec: TLabel
+              Left = 5
+              Top = 17
+              Width = 36
+              Height = 15
+              Caption = 'Codec'
+              ShowAccelChar = False
+            end
+            object Page_Easy_A1_Web: TButton
+              Left = 3
+              Top = 32
+              Width = 322
+              Height = 21
+              Hint = 'Go to the web site of a player for this file'
+              Caption = 'Go to the web site of a player for this file'
+              TabOrder = 0
+              Visible = False
+              OnClick = Page_Easy_WebClick
+            end
+          end
+          object Page_Easy_A2: TGroupBox
+            AlignWithMargins = True
+            Left = 403
+            Top = 0
+            Width = 397
+            Height = 56
+            Margins.Top = 0
+            Margins.Right = 0
+            Margins.Bottom = 0
+            Align = alTop
+            Caption = 'Second audio stream'
+            TabOrder = 1
+            ExplicitLeft = 401
+            ExplicitWidth = 395
+            object Page_Easy_A2_Codec: TLabel
+              Left = 5
+              Top = 17
+              Width = 36
+              Height = 15
+              Caption = 'Codec'
+              ShowAccelChar = False
+            end
+            object Page_Easy_A2_Web: TButton
+              Left = 3
+              Top = 32
+              Width = 314
+              Height = 21
+              Hint = 'Go to the web site of a player for this file'
+              Caption = 'Go to the web site of a player for this file'
+              TabOrder = 0
+              Visible = False
+              OnClick = Page_Easy_WebClick
+            end
+          end
+        end
+      end
+      object pnlTextStreams: TPanel
+        Left = 0
+        Top = 264
+        Width = 800
+        Height = 60
+        Align = alTop
+        AutoSize = True
+        BevelOuter = bvNone
+        TabOrder = 4
+        object gpnlTextStreams: TGridPanel
+          Left = 0
+          Top = 0
+          Width = 800
+          Height = 60
+          Align = alTop
+          BevelOuter = bvNone
+          ColumnCollection = <
+            item
+              Value = 33.333333333333330000
+            end
+            item
+              Value = 33.333333333333340000
+            end
+            item
+              Value = 33.333333333333330000
+            end>
+          ControlCollection = <
+            item
+              Column = 0
+              Control = Page_Easy_T1
+              Row = 0
+            end
+            item
+              Column = 1
+              Control = Page_Easy_T2
+              Row = 0
+            end
+            item
+              Column = 2
+              Control = Page_Easy_T3
+              Row = 0
+            end>
+          RowCollection = <
+            item
+              Value = 100.000000000000000000
+            end>
+          TabOrder = 0
+          ExplicitWidth = 796
+          object Page_Easy_T1: TGroupBox
+            AlignWithMargins = True
+            Left = 0
+            Top = 0
+            Width = 264
+            Height = 56
+            Margins.Left = 0
+            Margins.Top = 0
+            Margins.Bottom = 0
+            Align = alTop
+            Caption = 'First text stream'
+            TabOrder = 0
+            ExplicitWidth = 262
+            object Page_Easy_T1_Codec: TLabel
+              Left = 5
+              Top = 17
+              Width = 36
+              Height = 15
+              Caption = 'Codec'
+              ShowAccelChar = False
+            end
+            object Page_Easy_T1_Web: TButton
+              Left = 3
+              Top = 32
+              Width = 215
+              Height = 21
+              Hint = 'Go to the web site of a player for this file'
+              Caption = 'Go to the web site of a player for this file'
+              TabOrder = 0
+              Visible = False
+              OnClick = Page_Easy_WebClick
+            end
+          end
+          object Page_Easy_T2: TGroupBox
+            AlignWithMargins = True
+            Left = 270
+            Top = 0
+            Width = 260
+            Height = 56
+            Margins.Top = 0
+            Margins.Bottom = 0
+            Align = alTop
+            Caption = 'Second text stream'
+            TabOrder = 1
+            ExplicitLeft = 268
+            object Page_Easy_T2_Codec: TLabel
+              Left = 5
+              Top = 16
+              Width = 36
+              Height = 15
+              Caption = 'Codec'
+              ShowAccelChar = False
+            end
+            object Page_Easy_T2_Web: TButton
+              Left = 3
+              Top = 32
+              Width = 215
+              Height = 21
+              Hint = 'Go to the web site of a player for this file'
+              Caption = 'Go to the web site of a player for this file'
+              TabOrder = 0
+              Visible = False
+              OnClick = Page_Easy_WebClick
+            end
+          end
+          object Page_Easy_T3: TGroupBox
+            AlignWithMargins = True
+            Left = 536
+            Top = 0
+            Width = 264
+            Height = 56
+            Margins.Top = 0
+            Margins.Right = 0
+            Margins.Bottom = 0
+            Align = alTop
+            Caption = 'Third text stream'
+            TabOrder = 2
+            ExplicitLeft = 534
+            ExplicitWidth = 262
+            object Page_Easy_T3_Codec: TLabel
+              Left = 5
+              Top = 16
+              Width = 36
+              Height = 15
+              Caption = 'Codec'
+              ShowAccelChar = False
+            end
+            object Page_Easy_T3_Web: TButton
+              Left = 3
+              Top = 32
+              Width = 215
+              Height = 21
+              Hint = 'Go to the web site of a player for this file'
+              Caption = 'Go to the web site of a player for this file'
+              TabOrder = 0
+              Visible = False
+              OnClick = Page_Easy_WebClick
+            end
+          end
+        end
+      end
+      object pnlNote: TPanel
+        Left = 0
+        Top = 543
+        Width = 800
+        Height = 25
+        Align = alBottom
+        AutoSize = True
+        BevelOuter = bvNone
+        TabOrder = 5
+        ExplicitTop = 541
+        DesignSize = (
+          800
+          25)
+        object Page_Easy_Note: TLabel
+          Left = 174
+          Top = 5
+          Width = 593
+          Height = 15
+          Alignment = taRightJustify
+          Anchors = [akRight, akBottom]
+          Caption = 
+            'Note : this is a basic view. For more information about this fil' +
+            'e, you must select a different view (Sheet, Tree...)'
+        end
+        object Page_Easy_DifferentView: TButton
+          Left = 773
+          Top = 0
+          Width = 27
+          Height = 25
+          Anchors = [akRight, akBottom]
+          Caption = '-->'
+          PopupMenu = ToolBar_View_Menu
+          TabOrder = 0
+          OnClick = Page_Easy_DifferentViewClick
         end
       end
     end
@@ -362,7 +595,7 @@ object MainF: TMainF
       object Page_Sheet_Splitter1: TSplitter
         Left = 0
         Top = 121
-        Width = 682
+        Width = 800
         Height = 3
         Cursor = crVSplit
         Align = alTop
@@ -374,48 +607,54 @@ object MainF: TMainF
       object Page_Sheet_Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 682
+        Width = 800
         Height = 121
         Align = alTop
-        Caption = 'Page_Sheet_Panel1'
         TabOrder = 0
         object Page_Sheet_Sheet: TStringGrid
           Left = 1
           Top = 1
-          Width = 604
-          Height = 118
+          Width = 798
+          Height = 119
+          Align = alClient
           DefaultRowHeight = 16
           FixedCols = 0
           RowCount = 2
           Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goRowSelect]
           TabOrder = 0
           OnSelectCell = Page_Sheet_SheetSelectCell
+          ExplicitWidth = 604
+          ExplicitHeight = 118
         end
       end
       object Page_Sheet_Panel2: TPanel
         Left = 0
         Top = 124
-        Width = 682
-        Height = 231
+        Width = 800
+        Height = 444
         Align = alClient
-        Caption = 'Page_Sheet_Panel2'
         TabOrder = 1
+        DesignSize = (
+          800
+          444)
         object Page_Sheet_A: TComboBox
           Left = 1
           Top = 49
-          Width = 561
+          Width = 752
           Height = 23
+          Anchors = [akLeft, akTop, akRight]
           Enabled = False
           TabOrder = 0
           OnChange = Page_Sheet_Change
           OnEnter = Page_Sheet_Change
         end
         object Page_Sheet_A_Web: TButton
-          Left = 567
+          Left = 759
           Top = 50
           Width = 38
           Height = 21
           Hint = 'Go to the Web site for this codec'
+          Anchors = [akTop, akRight]
           Caption = 'Web'
           Enabled = False
           TabOrder = 1
@@ -424,19 +663,21 @@ object MainF: TMainF
         object Page_Sheet_C: TComboBox
           Left = 1
           Top = 97
-          Width = 561
+          Width = 752
           Height = 23
+          Anchors = [akLeft, akTop, akRight]
           Enabled = False
           TabOrder = 2
           OnChange = Page_Sheet_Change
           OnEnter = Page_Sheet_Change
         end
         object Page_Sheet_C_Web: TButton
-          Left = 567
+          Left = 759
           Top = 99
           Width = 38
           Height = 20
           Hint = 'Go to the Web site for this codec'
+          Anchors = [akTop, akRight]
           Caption = 'Web'
           Enabled = False
           TabOrder = 3
@@ -445,18 +686,20 @@ object MainF: TMainF
         object Page_Sheet_G: TComboBox
           Left = 1
           Top = 1
-          Width = 561
+          Width = 752
           Height = 23
+          Anchors = [akLeft, akTop, akRight]
           TabOrder = 4
           OnChange = Page_Sheet_Change
           OnEnter = Page_Sheet_Change
         end
         object Page_Sheet_G_Web: TButton
-          Left = 567
+          Left = 759
           Top = 3
           Width = 38
           Height = 20
           Hint = 'Go to the web site of a player for this file'
+          Anchors = [akTop, akRight]
           Caption = 'Web'
           Enabled = False
           TabOrder = 5
@@ -465,19 +708,21 @@ object MainF: TMainF
         object Page_Sheet_T: TComboBox
           Left = 1
           Top = 73
-          Width = 561
+          Width = 752
           Height = 23
+          Anchors = [akLeft, akTop, akRight]
           Enabled = False
           TabOrder = 6
           OnChange = Page_Sheet_Change
           OnEnter = Page_Sheet_Change
         end
         object Page_Sheet_T_Web: TButton
-          Left = 567
+          Left = 759
           Top = 75
           Width = 38
           Height = 20
           Hint = 'Go to the Web site for this codec'
+          Anchors = [akTop, akRight]
           Caption = 'Web'
           Enabled = False
           TabOrder = 7
@@ -486,8 +731,10 @@ object MainF: TMainF
         object Page_Sheet_Text: TMemo
           Left = 1
           Top = 121
-          Width = 604
-          Height = 104
+          Width = 798
+          Height = 322
+          Align = alBottom
+          Anchors = [akLeft, akTop, akRight, akBottom]
           Color = clWhite
           EditMargins.Auto = True
           Font.Charset = DEFAULT_CHARSET
@@ -500,23 +747,26 @@ object MainF: TMainF
           ReadOnly = True
           ScrollBars = ssVertical
           TabOrder = 8
+          ExplicitTop = 123
         end
         object Page_Sheet_V: TComboBox
           Left = 1
           Top = 25
-          Width = 561
+          Width = 752
           Height = 23
+          Anchors = [akLeft, akTop, akRight]
           Enabled = False
           TabOrder = 9
           OnChange = Page_Sheet_Change
           OnEnter = Page_Sheet_Change
         end
         object Page_Sheet_V_Web: TButton
-          Left = 567
+          Left = 759
           Top = 27
           Width = 38
           Height = 20
           Hint = 'Go to the Web site for this codec'
+          Anchors = [akTop, akRight]
           Caption = 'Web'
           Enabled = False
           TabOrder = 10
@@ -532,9 +782,11 @@ object MainF: TMainF
       ShowHint = False
       object Page_Tree_Tree: TTreeView
         Left = 0
-        Top = 2
-        Width = 628
-        Height = 378
+        Top = 0
+        Width = 800
+        Height = 568
+        Align = alClient
+        BorderStyle = bsNone
         Color = clWhite
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -554,10 +806,11 @@ object MainF: TMainF
       ParentShowHint = False
       ShowHint = False
       object Page_Text_Text: TMemo
-        Left = 3
+        Left = 0
         Top = 0
-        Width = 637
-        Height = 352
+        Width = 800
+        Height = 568
+        Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
         BorderStyle = bsNone
@@ -581,13 +834,17 @@ object MainF: TMainF
       Caption = 'HTML'
       ImageIndex = 6
       object Page_HTML_HTML: TCppWebBrowser
-        Left = 4
+        Left = 0
         Top = 0
-        Width = 673
-        Height = 385
+        Width = 800
+        Height = 568
+        Align = alClient
         TabOrder = 0
+        ExplicitLeft = 4
+        ExplicitWidth = 673
+        ExplicitHeight = 385
         ControlData = {
-          4C0000008E450000CA2700000000000000000000000000000000000000000000
+          4C000000AF520000B43A00000000000000000000000000000000000000000000
           000000004C000000000000000000000001000000E0D057007335CF11AE690800
           2B2E126208000000000000004C0000000114020000000000C000000000000046
           8000000000000000000000000000000000000000000000000000000000000000
@@ -599,50 +856,105 @@ object MainF: TMainF
       ImageIndex = 4
       ParentShowHint = False
       ShowHint = False
-      object Page_Custom_Text: TMemo
-        Left = 2
-        Top = 2
-        Width = 326
-        Height = 370
-        BevelInner = bvNone
-        BevelOuter = bvNone
-        BorderStyle = bsNone
-        Color = clWhite
-        EditMargins.Auto = True
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -15
-        Font.Name = 'System'
-        Font.Pitch = fpFixed
-        Font.Style = []
-        ParentFont = False
-        ReadOnly = True
-        ScrollBars = ssBoth
-        TabOrder = 0
-      end
-      object Page_Custom_HTML: TCppWebBrowser
-        Left = 336
+      object gpnlCustom: TGridPanel
+        Left = 0
         Top = 0
-        Width = 300
-        Height = 369
-        TabOrder = 1
-        ControlData = {
-          4C000000021F0000232600000000000000000000000000000000000000000000
-          000000004C000000000000000000000001000000E0D057007335CF11AE690800
-          2B2E126208000000000000004C0000000114020000000000C000000000000046
-          8000000000000000000000000000000000000000000000000000000000000000
-          00000000000000000100000000000000000000000000000000000000}
+        Width = 800
+        Height = 568
+        Align = alClient
+        BevelOuter = bvNone
+        ColumnCollection = <
+          item
+            Value = 50.000000000000000000
+          end
+          item
+            Value = 50.000000000000000000
+          end>
+        ControlCollection = <
+          item
+            Column = 0
+            Control = Page_Custom_Text
+            Row = 0
+          end
+          item
+            Column = 1
+            Control = Page_Custom_HTML
+            Row = 0
+          end>
+        RowCollection = <
+          item
+            Value = 100.000000000000000000
+          end>
+        TabOrder = 0
+        ExplicitLeft = 16
+        ExplicitTop = 456
+        ExplicitWidth = 657
+        ExplicitHeight = 81
+        object Page_Custom_Text: TMemo
+          AlignWithMargins = True
+          Left = 0
+          Top = 0
+          Width = 397
+          Height = 568
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Bottom = 0
+          Align = alClient
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          Color = clWhite
+          EditMargins.Auto = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'System'
+          Font.Pitch = fpFixed
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          ScrollBars = ssBoth
+          TabOrder = 0
+          ExplicitTop = -319
+          ExplicitWidth = 385
+          ExplicitHeight = 400
+        end
+        object Page_Custom_HTML: TCppWebBrowser
+          AlignWithMargins = True
+          Left = 403
+          Top = 0
+          Width = 397
+          Height = 568
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alClient
+          TabOrder = 1
+          ExplicitLeft = 264
+          ExplicitTop = -304
+          ExplicitWidth = 393
+          ExplicitHeight = 385
+          ControlData = {
+            4C00000008290000B43A00000000000000000000000000000000000000000000
+            000000004C000000000000000000000001000000E0D057007335CF11AE690800
+            2B2E126208000000000000004C0000000114020000000000C000000000000046
+            8000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000100000000000000000000000000000000000000}
+        end
       end
     end
     object Page_System: TTabSheet
       Caption = 'Your system'
       ImageIndex = 3
       object Page_System_Buttons: TGroupBox
-        Left = 9
+        Left = 0
         Top = 0
-        Width = 285
+        Width = 800
         Height = 30
+        Align = alTop
         TabOrder = 0
+        ExplicitLeft = 9
+        ExplicitWidth = 285
         object Page_System_Buttons_Video: TRadioButton
           Left = 3
           Top = 9
@@ -674,10 +986,11 @@ object MainF: TMainF
         end
       end
       object Page_System_Sheet: TListView
-        Left = 9
+        Left = 0
         Top = 30
-        Width = 603
-        Height = 329
+        Width = 800
+        Height = 538
+        Align = alClient
         Columns = <
           item
             Caption = 'Id'
@@ -705,6 +1018,9 @@ object MainF: TMainF
         ViewStyle = vsReport
         OnColumnClick = Page_System_SheetColumnClick
         OnCompare = Page_System_SheetCompare
+        ExplicitLeft = 9
+        ExplicitWidth = 603
+        ExplicitHeight = 329
       end
     end
   end
@@ -717,7 +1033,7 @@ object MainF: TMainF
     ButtonHeight = 39
     ButtonWidth = 39
     Caption = 'ToolBar'
-    Color = clNone
+    Color = clMenuBar
     DisabledImages = ToolBar_Image_Disabled
     EdgeBorders = [ebRight]
     EdgeInner = esNone
@@ -728,7 +1044,6 @@ object MainF: TMainF
     ShowHint = True
     TabOrder = 1
     Transparent = True
-    ExplicitHeight = 599
     object Tool_File: TToolButton
       Left = 0
       Top = 0
@@ -792,8 +1107,8 @@ object MainF: TMainF
   end
   object MainMenu: TMainMenu
     Images = Menu_Image
-    Left = 768
-    Top = 28
+    Left = 88
+    Top = 372
     object M_File: TMenuItem
       Caption = 'File'
       ImageIndex = 0
@@ -1194,8 +1509,8 @@ object MainF: TMainF
     end
   end
   object ToolBar_View_Menu: TPopupMenu
-    Left = 768
-    Top = 312
+    Left = 528
+    Top = 432
     object ToolBar_View_Easy: TMenuItem
       AutoCheck = True
       Caption = 'a'
@@ -5951,8 +6266,8 @@ object MainF: TMainF
               C08E29E30000000049454E44AE426082}
           end>
       end>
-    Left = 768
-    Top = 88
+    Left = 88
+    Top = 432
   end
   object Menu_Image: TVirtualImageList
     Images = <
@@ -6006,8 +6321,8 @@ object MainF: TMainF
         Name = '0'
       end>
     ImageCollection = ImageCollection1
-    Left = 768
-    Top = 144
+    Left = 184
+    Top = 432
   end
   object Toolbar_Image: TVirtualImageList
     Images = <
@@ -6044,20 +6359,20 @@ object MainF: TMainF
     ImageCollection = ImageCollection1
     Width = 32
     Height = 32
-    Left = 768
-    Top = 200
+    Left = 272
+    Top = 432
   end
   object ApplicationEvents1: TApplicationEvents
     OnSettingChange = ApplicationEvents1OnSettingChange
-    Left = 768
-    Top = 480
+    Left = 320
+    Top = 496
   end
   object FolderOpenDialog1: TFileOpenDialog
     FavoriteLinks = <>
     FileTypes = <>
     Options = [fdoPickFolders]
-    Left = 768
-    Top = 424
+    Left = 200
+    Top = 496
   end
   object ToolBar_Image_Disabled: TVirtualImageList
     Images = <
@@ -6100,14 +6415,14 @@ object MainF: TMainF
     ImageCollection = ImageCollection1
     Width = 32
     Height = 32
-    Left = 768
-    Top = 256
+    Left = 392
+    Top = 432
   end
   object FileOpenDialog1: TFileOpenDialog
     FavoriteLinks = <>
     FileTypes = <>
     Options = [fdoAllowMultiSelect]
-    Left = 768
-    Top = 368
+    Left = 88
+    Top = 496
   end
 end

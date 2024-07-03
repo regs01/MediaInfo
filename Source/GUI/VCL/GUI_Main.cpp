@@ -286,6 +286,18 @@ __fastcall TMainF::TMainF(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TMainF::GUI_Configure()
 {
+
+    // Hide tabs
+    for (int cTabIndex = 0; cTabIndex <= Page->PageCount-1; cTabIndex++)
+        Page->Pages[cTabIndex]->TabVisible = False;
+
+    // Reorder panels
+    pnlTextStreams->Top = 0;
+    pnlAudioStreams->Top = 0;
+    pnlVideoStreams->Top = 0;
+    pnlContainer->Top = 0;
+    pnlFile->Top = 0;
+
     //Load Configuration
     if (Prefs->Config_Load()==2) //Showing options if no config
     {
@@ -532,6 +544,11 @@ void __fastcall TMainF::FormDestroy(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainF::FormResize(TObject *Sender)
 {
+
+    return;
+    
+    // todo: deprecate event
+
     //If triggered on application close
     if(Prefs==NULL)
         return;
